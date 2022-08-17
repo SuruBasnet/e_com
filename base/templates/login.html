@@ -1,0 +1,58 @@
+{% extends 'main.html' %}
+{% block content %}
+
+<main>
+    {% if page == 'login' %}
+        <section class="d-flex justify-content-center mt-5 p-5">
+            <div class="mt-5 border border-dark p-5 bg-primary text-light" id="container">
+                <h2 class="ps-3 ms-5">Login page</h2>
+                <hr>
+                <div class="d-flex flex-column align-items-center m-5" id="container">
+                    <form method="POST" action="" >
+                        {% csrf_token %}
+                        <label for="">Email:</label> <br>
+                        <input name="email" type="username" placeholder="Enter your email...."> <br>
+                        <p></p>
+                        <label for="">Password:</label> <br>    
+                        <input name="password" type="password" placeholder="Enter your password"><br>
+                        <p></p>
+                        <button class="btn btn-success ms-5 text-light" type="submit">Login</button>
+                    </form>
+                    
+                    <h3 class="mt-5">Haven't signed up yet?</h3>
+                    <a class="text-light" href="{% url 'register' %}">Sign up</a>
+                </div>
+            </div>
+            
+        </section>
+    {% else %}
+    <section class="d-flex justify-content-center mt-5 p-5">
+        <div class="mt-5 border border-dark p-5 bg-primary text-light" id="container">
+            <h2 class="ps-3 ms-5">Login page</h2>
+            <hr>
+            <div class="d-flex flex-column align-items-center m-5" id="container">
+                <p class="lead">If you are a seller click on status.</p>
+                <form class="form" action=" " method="POST">
+                    {% csrf_token %}
+                    {% for field in form %}
+                    <div class="form__group form__group">
+                      <label for="room_name">{{field.label}}</label>
+                      {{field}}
+                    </div>
+                    {% endfor %}
+                    <button class="btn btn-success" type="submit">Register</button>
+                </form>
+                
+                <h3 class="mt-5">Alreday signed up?</h3>
+                <a class="text-light" href="{% url 'login' %}">Sign in</a>
+            </div>
+        </div>
+    {% endif %}
+        
+    </section>
+</main>
+    <!-- Buyer login -->
+
+{% endblock content %}
+
+    

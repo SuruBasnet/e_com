@@ -1,0 +1,44 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block content %}
+    
+<main>
+    <section class="mt-5 pt-3 text-center" >
+        <h4 >Hello {{request.user}}, these are your cart items.</h4>
+        <hr>
+        {% for product in products %}
+        <div class="d-flex justify-content-center" id="main-container">
+            <div class="d-flex w-50 justify-content-between border border-dark p-2 bg-light" id="container">
+                {% if product.image.url is not null %}
+              <img
+                src="{{product.image.url}}"
+                class="card-img-top w-25"
+                alt=""
+              />
+              {% else %}
+              <img
+                src="{% static 'images/Product.png' %}"
+                class="card-img-top w-25"
+                alt=""
+              />
+              {% endif %}
+                <div>
+                    <p>Product name: {{product.name}} <br>
+                        Price: Rs{{product.price}} <br>
+                    Seller: {{product.seller}}</p>
+                        <a href="{% url 'checkout' product.id %}"><button class="btn btn-primary" >Buy</button></a>
+                        <a href="{% url 'deleteitem' product.id %}"><button class="btn btn-warning" >Remove</button></a>
+                </div>
+                
+            </div>
+            
+        </div>
+        <br>
+        {% endfor %}
+        
+    </section>
+</main>
+
+{% endblock content %}
+
+  

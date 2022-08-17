@@ -1,0 +1,59 @@
+<section id="nav-bar">
+    <nav class="navbar navbar-expand-lg bg-primary navbar-dark fixed-top d-flex justify-content-evenly pb-2">
+      <div class="container">
+        <a href="{% url 'home' %}" class="navbar-brand ">. ZARAD</a>
+
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navmenu"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+
+        <div class="container-fluid">
+          <form action="{% url 'home' %}" method="POST" class="d-flex" role="search">
+            {% csrf_token %}
+            <input
+              name="q"
+              class="form-control me-2"
+              type="search"
+              placeholder="Search for products..."
+              aria-label="Search"
+            />
+            <button class="btn btn-warning" type="submit">
+              Search
+            </button>
+          </form>
+        </div>
+
+          <div class="collapse navbar-collapse" id="navmenu">
+            <ul class="navbar-nav ms-auto">
+              <li class="nav-item">
+                <a href="#home" class="nav-link">Home</a>
+              </li>
+              <li class="nav-item">
+                <a href="#about" class="nav-link">About</a>
+              </li>
+              <li class="nav-item">
+                <a href="{% url 'cart' %}" class="nav-link">Cart</a>
+              </li>
+              {% if request.user.is_authenticated %}
+                <li class="nav-item">
+                  <a href="{% url 'logout' %}" class="nav-link">Logout</a>
+                </li>
+                
+              {% else %}
+                <li class="nav-item">
+                  <a href="{% url 'login' %}" class="nav-link">Login</a>
+                </li>
+              {% endif %}
+              
+            </ul>
+          </div>
+        
+        
+    </nav>
+  </section>

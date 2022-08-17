@@ -1,0 +1,49 @@
+{% extends 'main.html' %}
+{% block content %}
+
+<main>
+    <section class="d-flex justify-content-center mt-5 p-5">
+        <div class="mt-5 border border-dark p-5 bg-primary text-light" id="container">
+            <h2 class="ps-3 ms-4">Product Form</h2>
+            <hr>
+            <div class="d-flex  align-items-center m-5" id="container">
+                <form  method="POST" action=" " enctype='multipart/form-data'>
+                    {% csrf_token %}
+                        <label for="product_category">Product category</label>
+                        <input type="text" name="category" value="{{Product.category}}" list="topic-list" required>
+                        <datalist id="topic-list">
+                        <select id="product_category">
+                            {% for category in categories %}
+                            <option value="{{category.name}}">{{category.name}}</option>
+                            {% endfor %}
+                        </select>
+                        </datalist> <br>
+                        <p></p>
+
+                        <label for="room_name">Product name</label>
+                        {{form.name}} <br>
+                        <p></p>
+                        <label for="room_name">Description</label>
+                        {{form.descritpion}} <br>
+                        <p></p>
+                        <label for="room_name">Product image</label>
+                        {{form.image}} <br>
+                        <p></p>
+                        <label for="room_name">Stock</label>
+                        {{form.stock}} <br>
+                        <p></p>
+                        <label for="room_name">Price</label>
+                        {{form.price}} <br>
+                        <p></p>
+            
+                    
+                    <button type="submit">Submit</button>
+                </form>
+                
+            </div>
+        </div>
+        
+    </section>
+</main>
+
+{% endblock content %}   

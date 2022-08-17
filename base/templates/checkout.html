@@ -1,0 +1,63 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block content %}
+
+<main>
+  <section class="d-flex justify-content-center pt-5">
+    <div class="w-75 bg-light mt-5 mb-5 text-center" id="container">
+      <form method="POST" action="">
+        {% csrf_token %}
+        <h3>Checkout</h3>
+        <hr />
+        <h4>Product</h4>
+        <div class="d-flex justify-content-evenly" id="container-2">
+          <p class="lead mt-5">
+            Product name: {{product.name}} <br />
+            Price: Rs{{product.price}} <br />
+            Category: {{product.category}} <br />
+          </p>
+          {% if product.image.url is not null %}
+          <img
+            src="{{product.image.url}}"
+            class="card-img-top w-25"
+            alt=""
+          />
+          {% else %}
+          <img
+            src="{% static 'images/Product.png' %}"
+            class="card-img-top w-25"
+            alt=""
+          />
+          {% endif %}
+        </div>
+        <hr />
+        <h4>Payment Method:</h4>
+        <div id="container-3">
+          <label for="">Select a method for payment:</label>
+          <a href="index.html"
+            >Online ( Esewa, Khalti)</a
+          >
+          &nbsp; <input type="radio" name="Cash_in_hand" id="" />Cash in hand
+        </div>
+        <br />
+        <hr />
+        <h4>Total Price:</h4>
+        <div id="container-4">
+          <p>Price of product: Rs{{product.price}}</p>
+          <br />
+          <p>Shipping charge: Rs25</p>
+          <br />
+          <h5>Total price: Rs{{product.price|add:'25'}}</h5>
+        </div>
+        <hr />
+        <button class="btn btn-primary" type="submit">Confirm</button>
+        <a href="{% url 'home' %}" class="btn btn-warning">Cancel</a>
+      </form>
+      
+    </div>
+  </section>
+</main>
+   
+{% endblock content %}
+
+

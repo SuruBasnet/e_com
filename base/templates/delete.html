@@ -1,0 +1,16 @@
+{% extends 'main.html' %}
+
+{% block content %}
+<div class="p-5" id="container">
+    <p class="mt-5 lead">Are you sure you want to delete {{content}}?</p>
+    <form class="mt-2" action="" method="POST">
+        {% csrf_token %}
+        <a href="{% url 'deleteproduct' content.id %}"><button class="btn btn-warning" >Yes</button></a>
+        <a href="{% url 'home' %}"><button class="btn btn-primary">No</button></a>
+    </form>
+</div>
+   
+    
+
+
+{% endblock content %}
